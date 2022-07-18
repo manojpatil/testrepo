@@ -17,30 +17,30 @@ export class CommitService {
         return await this.commitModel.findById(id).exec();
     }
 
-    async totalCommits(author_email) {
-        console.log('author_email :' + author_email)
-        return  await this.commitModel.find({ author_email: author_email }).count().exec();
+    async totalCommits(userId) {
+        console.log('userId :' + userId)
+        return  await this.commitModel.find({ userId: userId }).count().exec();
       }
 
     /* This is returning Project Names by User  
-    async totalProjects(author_email) {
-        console.log('author_email :' + author_email)
-        return  await this.commitModel.find().distinct("projectName").where({'author_email':author_email}).exec();
+    async totalProjects(userId) {
+        console.log('userId :' + userId)
+        return  await this.commitModel.find().distinct("projectName").where({'userId':userId}).exec();
       }
     */
-    async distinctProjects(author_email) {
-        console.log('author_email :' + author_email)
-        return  await this.commitModel.find({ author_email: author_email }).distinct("projectId").exec();
+    async distinctProjects(userId) {
+        console.log('userId :' + userId)
+        return  await this.commitModel.find({ userId: userId }).distinct("projectId").exec();
       }
     
-    async totalProjects(author_email) {
-        console.log('author_email :' + author_email)
-        return await (await this.commitModel.distinct("projectId").where({'author_email':author_email})).length;
+    async totalProjects(userId) {
+        console.log('userId :' + userId)
+        return await (await this.commitModel.distinct("projectId").where({'userId':userId})).length;
       }
     
-      async commitsByDate(author_email) {
-        console.log('author_email :' + author_email)
-        return await this.commitModel.distinct('commit_date').where({'author_email':author_email}).exec();
+      async commitsByDate(userId) {
+        console.log('userId :' + userId)
+        return await this.commitModel.distinct('commit_date').where({'userId':userId}).exec();
       } 
       
 

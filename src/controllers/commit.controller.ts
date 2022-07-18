@@ -22,12 +22,12 @@ export class CommitController {
         })
     }
 
-    @Get('/user/:author_email')
-    async DashboardKPIs(@Res() response, @Param('author_email') author_email) {
-        const TotalCommitsByUser = await this.commitService.totalCommits(author_email);
-        const ProjectsByUser = await this.commitService.distinctProjects(author_email);
-        const TotalProjectsByUser = await this.commitService.totalProjects(author_email);
-        const CommitsByDate = await this.commitService.commitsByDate(author_email);
+    @Get('/user/:userId')
+    async DashboardKPIs(@Res() response, @Param('userId') userId) {
+        const TotalCommitsByUser = await this.commitService.totalCommits(userId);
+        const ProjectsByUser = await this.commitService.distinctProjects(userId);
+        const TotalProjectsByUser = await this.commitService.totalProjects(userId);
+        const CommitsByDate = await this.commitService.commitsByDate(userId);
         return response.status(HttpStatus.OK).json({
             TotalCommitsByUser,TotalProjectsByUser,ProjectsByUser,CommitsByDate
         })
